@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-export default function FormText() {
+export default function FormText(props) {
     const [text, setText] = useState("Enter text");
 
 
@@ -13,23 +13,27 @@ export default function FormText() {
     const toUppercaseHandler = () => {
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Converted to uppercase", "success");
     }
 
     const toLowercaseHandler = () => {
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Converted to lowercase", "success");
     }
 
     const clearTextHandler = () => {
-        let newText = "";
-        setText(newText);
+        setText("");
+        props.showAlert("Text has been cleared.", "success");
     }
 
     const inverseTextHandler = () => {
         let arr = text.split("");
         let reverseString = arr.reverse().join("");
-        
+
         setText(reverseString);
+
+        props.showAlert("Text has been inverted.", "success");
     }
 
     return (
